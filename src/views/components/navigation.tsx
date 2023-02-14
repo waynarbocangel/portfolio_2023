@@ -1,16 +1,26 @@
-const enum NavigationLayout {
+import styled from "styled-components";
+import { hashCode } from "../../models/extensions/hash";
+
+export const enum NavigationLayout {
 	title, sidebar
 };
 
 export type NavigationProps = {
+	layout: NavigationLayout;
 	items?: string[];
-	format?: string;
 };
 
-let Navigation: React.FC<NavigationProps> = (props?) => {
-	console.log(props);
+let StyledNav = styled.nav<NavigationProps>`
+
+`;
+
+let Navigation: React.FC<NavigationProps> = (props) => {
 	return (
-		<nav className={props ? props.format : ""}><ul>{props ? props.items?.map((item) => <li key={item}>{item}</li>) : ""}</ul></nav>
+		<StyledNav layout={props.layout}>
+			<ul>
+				{props.items?.map((item) => <li key={hashCode(item)}>{item}</li>)}
+			</ul>
+		</StyledNav>
 	);
 };
 
