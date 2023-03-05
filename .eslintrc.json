@@ -11,10 +11,9 @@
 		"plugin:import/errors",
 		"plugin:react/recommended",
 		"plugin:jsx-a11y/recommended",
-		"prettier",
 		"plugin:@typescript-eslint/eslint-recommended",
 		"plugin:@typescript-eslint/recommended",
-		"prettier/@typescript-eslint"
+		"prettier"
 	],
 	"plugins": ["react", "jsx-a11y", "import", "@typescript-eslint"],
 	"rules": {
@@ -23,6 +22,7 @@
 		"react/no-find-dom-node": 0,
 		"react/jsx-filename-extension": ["warn", {"extensions": [".tsx"]}],
 		"no-use-before-define": "off",
+		"@typescript-eslint/no-non-null-assertion": 0,
 		"@typescript-eslint/no-use-before-define": ["error"],
 		"import/extensions": ["error", "ignorePackages", {"ts": "never", "tsx": "never"}]
 	},

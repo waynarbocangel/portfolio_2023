@@ -1,18 +1,26 @@
 import * as headerTypes from "../models/components/header/headerTypes";
-import Header from "./components/header";
-import { NavigationLayout } from "./components/navigation";
+import Header from "./components/header/header";
+import { NavigationLayout } from "../models/components/navigation/navigationTypes";
 
-let App = () => {
-	let headerNavigation: headerTypes.NavigationHeaderContent = {
+/**
+ * Entire App content
+ * @returns App JSX object
+ */
+const App = () => {
+
+	// Main navigation properties
+	const headerNavigation: headerTypes.NavigationHeaderContent = {
 		props: {
 			layout: NavigationLayout.title,
-			items: ["Test", "Test 2"],
+			items: [["Test", ""], ["Test 2", ""]],
 		}
 	};
 
-	let headerContent: (headerTypes.NavigationHeaderContent | headerTypes.TextHeaderContent | headerTypes.MediaHeaderContent)[][] = [
+	// Header content
+	const headerContent: (headerTypes.NavigationHeaderContent | headerTypes.TextHeaderContent | headerTypes.MediaHeaderContent)[][] = [
 		[headerNavigation]
 	];
+
 	return (
 		<>
 			<Header layout={headerTypes.HeaderLayout.full} content={headerContent} />

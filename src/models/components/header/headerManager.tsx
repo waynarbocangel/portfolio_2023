@@ -1,13 +1,18 @@
 import {  NavigationHeaderContent, TextHeaderContent, MediaHeaderContent } from "./headerTypes";
-import Navigation from "../../../views/components/navigation";
+import Navigation from "../../../views/components/navigation/navigation";
 import { hashCode } from "../../extensions/hash";
 
-let getComponent = (genericComponent: (NavigationHeaderContent | TextHeaderContent | MediaHeaderContent)) => {
-	let mediaComponent = genericComponent as MediaHeaderContent;
-	let textComponent = genericComponent as TextHeaderContent;
-	let navigationComponent = genericComponent as NavigationHeaderContent;
+/**
+ * Gets header component
+ * @param genericComponent - header component
+ * @returns corresponding JSX
+ */
+const getComponent = (genericComponent: (NavigationHeaderContent | TextHeaderContent | MediaHeaderContent)) => {
+	const mediaComponent = genericComponent as MediaHeaderContent;
+	const textComponent = genericComponent as TextHeaderContent;
+	const navigationComponent = genericComponent as NavigationHeaderContent;
 	if (mediaComponent.data !== null && mediaComponent.data !== undefined) {
-		return <img key={hashCode(JSON.stringify(mediaComponent))} />;
+		return <img key={hashCode(JSON.stringify(mediaComponent))} alt={mediaComponent.altText} />;
 	} else if (textComponent.text !== null && textComponent.text !== undefined) {
 		return <h1 key={hashCode(JSON.stringify(textComponent))}>Hello</h1>;
 	} else {
@@ -15,7 +20,12 @@ let getComponent = (genericComponent: (NavigationHeaderContent | TextHeaderConte
 	}
 }
 
-export let getSection = (section: (NavigationHeaderContent | TextHeaderContent | MediaHeaderContent)[]) => {
+/**
+ * Gets section in header
+ * @param section - section to retrieve
+ * @returns section with all detailed components
+ */
+export const getSection = (section: (NavigationHeaderContent | TextHeaderContent | MediaHeaderContent)[]) => {
 	return <section key={hashCode(JSON.stringify(section))}>
 		{section.map(getComponent)}
 	</section>;
